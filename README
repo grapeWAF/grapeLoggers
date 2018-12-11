@@ -1,0 +1,9 @@
+grapeLogger 通用日志搜集系统
+
+经历过日千万级日志量的洗礼，目前支持MongoDB & PostgreSQL & MYSQL。
+
+对于大量日志系统搜集，建议使用PostgreSQL。
+
+目前用于采集GrapeCDN前端的全部日志行为，包括运行日志和攻击日志等。
+
+拥有专用数据库采集方式，支持集群化运行，目前使用grpc。

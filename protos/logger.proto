@@ -1,0 +1,138 @@
+syntax = "proto3";
+
+package grape.logs;
+
+message LogMsgReq {
+    string LogJsonMsg  = 1;
+}
+
+message LogMsgResp {
+    int32 rCode = 1;
+}
+
+message LogMsgSearchReq {
+    string type = 1;
+    string host = 2;
+    string key = 3;
+    string beginDate = 4;
+    string endDate = 5;
+    int32 page_number = 6;
+}
+
+message LogMsgResult {
+    string type = 1;
+    string host = 2;
+    string time = 3;
+    string logmsg =4;
+    string caller = 5;
+    string data =6;
+}
+
+message LogMsgSearchResp {
+    int32 logNum = 1;
+    int32 pageNum = 2;
+    repeated  LogMsgResult req = 3;
+}
+
+message HostInfoDataReq {
+    int64 timestamp = 1;
+    string hostName = 2;
+    string remoteAddr = 3;
+    string system = 4;
+
+    uint64 byteSent = 5;
+    uint64 byteRecv = 6;
+
+    float sysMemPercent = 7;
+    uint64 sysMemFree = 8;
+    uint64 sysMemUsed = 9;
+
+    float procMemPercent = 10;
+
+    string cpuType = 11;
+    repeated float cpuPercent = 12; // 多个CPU的cpu使用率
+    float cpuTotal = 13;
+    
+    float procCpuPercent = 14;
+    int32 ProcNumFD =15;
+
+    // 硬盘信息
+    uint64 hdTotal = 16;
+    uint64 hdFree = 17;
+    float hdPercent = 18;
+
+    string hostUID = 19;
+
+    // 访问频率 
+    uint64 RQMCount = 20;
+    // 每次启动开始计算 重启则归零
+    uint64 totalRQ = 21;
+    // 总带宽流量
+    uint64 totalbyteSent = 22;
+    uint64 totalbyteRecv = 23;
+}
+
+message HostInfoDataResp {
+    int32 req = 1;
+}
+
+message HostCollReq {
+    string hostName = 1;
+    string hostUUID = 2;
+    int32 limit = 3;
+}
+
+message HostCollResp {
+    int32 req = 1;
+    repeated string datas = 2;
+}
+
+message SingleHostDataReq {
+    string hostName = 1; // 
+    string machineID = 2; 
+    string jsonBody = 3;
+}
+
+message SingleHostDataResp {
+    int32 req = 1;
+    string msg = 2;
+}
+
+message QPSDataReq {
+    int32 qps = 1;
+    int32 pv = 2;
+}
+
+message QPSDataResp {
+    int32 req = 1;
+}
+
+message RemapItem {
+    string FromSrc = 1;
+    int64 RecvBytes = 2;
+    int64 SendBytes = 3;
+    int32 Rqtotal = 4;
+    int64 time = 5;
+}
+
+message RemapCommitReq {
+    repeated RemapItem data = 1;
+}
+
+message RemapCommitResp {
+    int32 req = 1;
+}
+
+service LogService {
+    rpc AddLog(LogMsgReq) returns (LogMsgResp);
+    rpc SearchLog(LogMsgSearchReq) returns (LogMsgSearchResp);
+
+    // 采集信息获取
+    rpc SubmitHost(HostInfoDataReq) returns (HostInfoDataResp);
+    rpc GetHostDatas(HostCollReq) returns (HostCollResp);
+
+    rpc SubmitSingleHost(SingleHostDataReq) returns (SingleHostDataResp);
+
+    rpc QPSDataCommit(QPSDataReq) returns (QPSDataResp);
+    rpc RemapCollCommit(RemapCommitReq) returns (RemapCommitResp);
+}

@@ -1,0 +1,75 @@
+package: grapeGuard
+owners:
+- name: koangel
+  email: jackliu100@gmail.com
+- name: grapeGuardTeam
+ignore:
+  - grapeLoggers
+  - virtualizersdk
+excludeDirs:
+  - node_modules
+import:
+- package: github.com/PuerkitoBio/goquery
+  version: ~1.4.0
+- package: github.com/avct/uasurfer
+- package: github.com/coreos/etcd
+  version: ~3.3.3
+  subpackages:
+  - clientv3
+- package: github.com/fatih/color
+  version: ~1.6.0
+- package: github.com/go-ini/ini
+  version: ~1.34.0
+- package: github.com/imroc/req
+  version: ~0.1.9
+- package: github.com/kabukky/httpscerts
+- package: github.com/koangel/go-filemutex
+- package: github.com/koangel/grapeNet
+  subpackages:
+  - Etcd
+  - Utils
+- package: github.com/labstack/echo
+  version: ~3.3.4
+- package: github.com/lestrrat/go-file-rotatelogs
+- package: github.com/lucas-clemente/quic-go
+  version: ~0.7.0
+  subpackages:
+  - h2quic
+- package: github.com/mholt/caddy
+  version: ~0.10.12
+  subpackages:
+  - caddyhttp/httpserver
+  - caddyhttp/proxy
+- package: github.com/nsqio/go-nsq
+  version: ~1.0.7
+- package: github.com/rifflock/lfshook
+  version: ~2.3.0
+- package: github.com/shirou/gopsutil
+  version: ~2.18.3
+  subpackages:
+  - cpu
+  - disk
+  - host
+  - mem
+  - net
+  - process
+- package: github.com/sirupsen/logrus
+- package: github.com/x-cray/logrus-prefixed-formatter
+  version: ~0.5.2
+- package: github.com/xenolf/lego
+  version: a149e7d6506feb4003da7093cbf818c6b75ed4a4
+  subpackages:
+  - acmev2
+- package: go.uber.org/zap
+  version: ~1.7.1
+  subpackages:
+  - buffer
+- package: golang.org/x/net
+  subpackages:
+  - http2
+  - icmp
+  - ipv4
+- package: google.golang.org/grpc
+  version: ~1.11.2
+- package: gopkg.in/ini.v1
+  version: ~1.34.0

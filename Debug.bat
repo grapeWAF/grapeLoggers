@@ -1,0 +1,1 @@
+gocd -command="./ltest.exe" -build="go build -o ltest.exe"gocd -command="./ltest.exe" -build="go build -o ltest.exe"

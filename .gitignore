@@ -1,0 +1,10 @@
+debug
+logs
+logs/*.log
+clientv1/debug.test
+logger
+logger_Dbg
+logger_upx
+*.exe
+ltest.exe~
+.idea
